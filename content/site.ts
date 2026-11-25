@@ -129,14 +129,14 @@ const fr: Dictionary = {
   nav: { about: "À propos", projects: "Projets", skills: "Compétences", cv: "CV", contact: "Contact" },
   hero: {
     role: "Étudiant en BUT Informatique · Développeur web",
-    lead: "Je construis des sites et des applis web à Nantes, entre deux sessions de surf.",
+    lead: "Venu au code par les jeux vidéo, je fais aujourd'hui du web, et bientôt des jeux.",
     ctaProjects: "Voir mes projets",
     ctaCv: "Mon CV",
   },
   about: {
     title: "À propos",
     paragraphs: [
-      "Je suis Arthur, étudiant en 2e année de BUT Informatique à l'IUT de Nantes. Je suis arrivé au code par les jeux vidéo, et aujourd'hui je fais surtout du développement web : des sites et des applis que j'utilise moi-même, ou que ma promo utilise.",
+      "Je suis Arthur, étudiant en 2e année de BUT Informatique à l'IUT de Nantes. Je fais surtout du développement web : des sites et des applis que j'utilise moi-même, ou que ma promo utilise.",
       "J'apprends le plus en construisant mes propres projets, de l'idée jusqu'à la mise en ligne. À terme, j'aimerais créer des jeux, et j'ai déjà commencé sur Roblox.",
       "Quand je ne code pas, je suis souvent dans l'eau : je surfe, je nage, je cours aussi, et je me mets au triathlon. J'ai voyagé au Portugal, à Tenerife, en Angleterre et en Allemagne.",
     ],
@@ -290,14 +290,14 @@ const en: Dictionary = {
   nav: { about: "About", projects: "Projects", skills: "Skills", cv: "Resume", contact: "Contact" },
   hero: {
     role: "Computer science student · Web developer",
-    lead: "I build websites and web apps in Nantes, France, between two surf sessions.",
+    lead: "Video games got me into coding. Today I build for the web, and soon I'll make games.",
     ctaProjects: "See my projects",
     ctaCv: "My resume",
   },
   about: {
     title: "About",
     paragraphs: [
-      "I'm Arthur, a second-year computer science student (BUT Informatique) at the IUT de Nantes. Video games got me into code, and today I mostly do web development: sites and apps that I use myself, or that my classmates use.",
+      "I'm Arthur, a second-year computer science student (BUT Informatique) at the IUT de Nantes. I mostly do web development: sites and apps that I use myself, or that my classmates use.",
       "I learn the most by building my own projects, from the first idea to going live. Later on I'd like to make games, and I've already started on Roblox.",
       "When I'm not coding, I'm usually in the water: I surf, I swim, I also run, and I'm getting into triathlon. I've travelled to Portugal, Tenerife, England and Germany.",
     ],

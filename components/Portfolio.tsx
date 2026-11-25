@@ -24,7 +24,7 @@ export function Portfolio({ locale }: { locale: Locale }) {
         <About about={t.about} />
         <WaveDivider />
         <Projects projects={t.projects} newTab={t.a11y.newTab} />
-        <WaveDivider surfer />
+        <WaveDivider />
         <div className="section">
           <SkillsAndCv locale={locale} skills={t.skills} cv={t.cv} />
         </div>

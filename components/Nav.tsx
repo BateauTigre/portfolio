@@ -65,13 +65,14 @@ export function Nav({ locale, name, nav, a11y, themes }: NavProps) {
             ))}
           </ul>
 
+          {/* scroll={false} : on change de langue sans bouger dans la page */}
           <div className="nav__tools">
             <div className="lang-switch" role="group" aria-label={a11y.language}>
-              <Link href="/fr" hrefLang="fr" lang="fr" aria-current={locale === "fr" ? "page" : undefined}>
+              <Link href="/fr" scroll={false} hrefLang="fr" lang="fr" aria-current={locale === "fr" ? "page" : undefined}>
                 FR
               </Link>
               <span aria-hidden="true">/</span>
-              <Link href="/en" hrefLang="en" lang="en" aria-current={locale === "en" ? "page" : undefined}>
+              <Link href="/en" scroll={false} hrefLang="en" lang="en" aria-current={locale === "en" ? "page" : undefined}>
                 EN
               </Link>
             </div>

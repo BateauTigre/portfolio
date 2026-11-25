@@ -1,5 +1,4 @@
 import { themes } from "@/lib/theme";
-import { Surfer } from "./Surfer";
 
 /**
  * Le décor animé du haut de page : ciel, soleil ou lune, étoiles, mer et vagues.
@@ -113,12 +112,6 @@ export function Horizon() {
         </div>
       ))}
 
-      {/* Un surfeur qui traverse la baie sur la houle */}
-      <div className="surfer-track">
-        <div className="hero-surfer">
-          <Surfer />
-        </div>
-      </div>
 
       {/* Reflet du soleil (ou de la lune) sur l'eau */}
       <div className="orbit orbit--glint">

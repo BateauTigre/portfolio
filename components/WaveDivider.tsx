@@ -1,5 +1,3 @@
-import { Surfer } from "./Surfer";
-
 /* Une ligne de houle sur 2400 unités (2 × 1200) : décalée de -50 %, elle boucle sans raccord. */
 function swell(y: number, amp: number, periods: number) {
   const step = 1200 / (periods * 2);
@@ -13,8 +11,8 @@ function swell(y: number, amp: number, periods: number) {
 
 const LINES = [swell(22, 10, 5), swell(42, 8, 7), swell(58, 5, 10)];
 
-/** Séparateur entre deux sections : trois lignes de houle qui avancent, parfois un surfeur dessus. */
-export function WaveDivider({ surfer = false, flip = false }: { surfer?: boolean; flip?: boolean }) {
+/** Séparateur entre deux sections : trois lignes de houle qui avancent. */
+export function WaveDivider({ flip = false }: { flip?: boolean }) {
   return (
     <div className={`divider${flip ? " divider--flip" : ""}`} aria-hidden="true">
       <div className="divider__waves">
@@ -26,11 +24,6 @@ export function WaveDivider({ surfer = false, flip = false }: { surfer?: boolean
           </div>
         ))}
       </div>
-      {surfer ? (
-        <div className="divider__surfer">
-          <Surfer />
-        </div>
-      ) : null}
     </div>
   );
 }

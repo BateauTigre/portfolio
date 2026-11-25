@@ -70,7 +70,12 @@ export default async function LocaleLayout({
 
   return (
     // data-theme est ajouté par le script avant l'affichage : on prévient React.
-    <html lang={locale} className={`${fraunces.variable} ${dmSans.variable}`} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${fraunces.variable} ${dmSans.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
