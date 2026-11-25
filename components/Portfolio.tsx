@@ -5,6 +5,7 @@ import { Hero } from "./Hero";
 import { Nav } from "./Nav";
 import { Projects } from "./Projects";
 import { SkillsAndCv } from "./SkillsAndCv";
+import { WaveDivider } from "./WaveDivider";
 
 const YEAR = new Date().getFullYear();
 
@@ -21,10 +22,13 @@ export function Portfolio({ locale }: { locale: Locale }) {
       <main id="main">
         <Hero name={profile.name} hero={t.hero} />
         <About about={t.about} />
+        <WaveDivider />
         <Projects projects={t.projects} newTab={t.a11y.newTab} />
+        <WaveDivider surfer />
         <div className="section">
           <SkillsAndCv locale={locale} skills={t.skills} cv={t.cv} />
         </div>
+        <WaveDivider flip />
         <Contact contact={t.contact} newTab={t.a11y.newTab} />
       </main>
       <footer className="footer">

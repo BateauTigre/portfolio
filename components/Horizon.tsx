@@ -1,4 +1,5 @@
 import { themes } from "@/lib/theme";
+import { Surfer } from "./Surfer";
 
 /**
  * Le décor animé du haut de page : ciel, soleil ou lune, étoiles, mer et vagues.
@@ -24,9 +25,9 @@ function wavePath(amplitude: number, periods: number) {
 }
 
 const WAVES = {
-  far: wavePath(5, 12),
-  mid: wavePath(10, 6),
-  near: wavePath(16, 4),
+  far: wavePath(7, 12),
+  mid: wavePath(14, 6),
+  near: wavePath(22, 4),
   shore: wavePath(12, 3),
 };
 
@@ -111,6 +112,11 @@ export function Horizon() {
           <Wave d={WAVES.near} className="wave--near" />
         </div>
       ))}
+
+      {/* Un surfeur sur la houle */}
+      <div className="hero-surfer">
+        <Surfer />
+      </div>
 
       {/* Reflet du soleil (ou de la lune) sur l'eau */}
       <div className="orbit orbit--glint">
