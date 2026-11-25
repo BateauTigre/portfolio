@@ -1,0 +1,1355 @@
+/* =====================================================================
+   Portfolio Arthur Goubill — styles
+   Les couleurs, tailles et espacements viennent du DESIGN.md.
+   Les composants n'utilisent que les noms de rôle (--bg, --ink…), jamais un hex.
+   ===================================================================== */
+
+/* ---------- 1. Ambiances (mêmes rôles pour chacune) ---------- */
+
+/* Plein soleil : valeur par défaut (sans JavaScript aussi) */
+:root,
+[data-theme="midi"],
+.t-midi {
+  color-scheme: light;
+  --bg: #f3fafc;
+  --surface: #ffffff;
+  --ink: #0f2a3d;
+  --muted: #44606f;
+  --primary: #00707f;
+  --on-primary: #ffffff;
+  --line: #d5ecf2;
+  --sky-top: #3fa9ee;
+  --sky-low: #bde9fa;
+  --sea: #1aa6b7;
+  --sea-deep: #0b7c99;
+  --star: #ffe27a;
+  --ok: #2e8b57;
+  --err: #c0392b;
+}
+
+[data-theme="lever"],
+.t-lever {
+  color-scheme: light;
+  --bg: #fff4ea;
+  --surface: #ffffff;
+  --ink: #2a2540;
+  --muted: #5e5672;
+  --primary: #1f5f8b;
+  --on-primary: #ffffff;
+  --line: #f0dccb;
+  --sky-top: #9fd3ee;
+  --sky-low: #ffd3b6;
+  --sea: #6fb6c9;
+  --sea-deep: #3e8aa6;
+  --star: #ffb37a;
+  --ok: #2e8b57;
+  --err: #c0392b;
+}
+
+[data-theme="coucher"],
+.t-coucher {
+  color-scheme: dark;
+  --bg: #34193f;
+  --surface: #43234f;
+  --ink: #fff3ea;
+  --muted: #e3c7d6;
+  --primary: #ffb070;
+  --on-primary: #34193f;
+  --line: #5a3366;
+  --sky-top: #6b3fa0;
+  --sky-low: #ff8a5b;
+  --sea: #c45a8a;
+  --sea-deep: #5b2a6e;
+  --star: #ff7a3d;
+  --ok: #7fd8a4;
+  --err: #ff8a80;
+}
+
+[data-theme="nuit"],
+.t-nuit {
+  color-scheme: dark;
+  --bg: #0d1b33;
+  --surface: #15284a;
+  --ink: #eaf1ff;
+  --muted: #a9b8d6;
+  --primary: #8ec9ff;
+  --on-primary: #0d1b33;
+  --line: #243b63;
+  --sky-top: #060e1f;
+  --sky-low: #1b2f57;
+  --sea: #12315c;
+  --sea-deep: #0a1f3e;
+  --star: #f4f1dc;
+  --ok: #7fd8a4;
+  --err: #ff8a80;
+}
+
+/* ---------- 2. Tokens communs ---------- */
+
+:root {
+  --display: var(--font-display, "Fraunces"), "Gelasio", Georgia, serif;
+  --body: var(--font-body, "DM Sans"), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --fs-hero: clamp(2.75rem, 1.55rem + 5.4vw, 6rem);
+  --fs-h2: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --fs-h3: clamp(1.375rem, 1.23rem + 0.6vw, 1.75rem);
+  --fs-lead: clamp(1.125rem, 1.06rem + 0.3vw, 1.3125rem);
+  --fs-body: clamp(1rem, 0.98rem + 0.1vw, 1.0625rem);
+  --fs-small: 0.875rem;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  --r-sm: 8px;
+  --r-md: 18px;
+  --r-pill: 999px;
+
+  --shadow: 0 12px 32px -16px color-mix(in srgb, var(--sea-deep) 45%, transparent);
+
+  --nav-h: 64px;
+  --sea-h: 36%;
+  --sun-size: clamp(72px, 9vw, 132px);
+  --scene-ease: 1.2s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* ---------- 3. Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--nav-h) + var(--s-4));
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-weight: 600;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+p {
+  margin: 0 0 var(--s-4);
+  max-width: 65ch;
+  text-wrap: pretty;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--s-2);
+  left: var(--s-2);
+  z-index: 100;
+  padding: var(--s-3) var(--s-5);
+  border-radius: var(--r-pill);
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(1120px + 2 * 20px);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media (min-width: 900px) {
+  .container {
+    max-width: calc(1120px + 2 * 32px);
+    padding-inline: 32px;
+  }
+}
+
+.section {
+  padding-block: var(--s-9);
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding-block: var(--s-10);
+  }
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section__title {
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  margin-bottom: var(--s-5);
+}
+
+.section__lead {
+  color: var(--muted);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+}
+
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- 4. Boutons et liens ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: 48px;
+  padding: 0 var(--s-6);
+  border: 1.5px solid transparent;
+  border-radius: var(--r-pill);
+  font: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 150ms ease;
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+.btn:hover {
+  filter: brightness(0.94);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.btn--primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.btn--secondary {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- 5. Navigation ---------- */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  height: var(--nav-h);
+}
+
+.nav__brand {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.nav__toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__links a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  font-weight: 500;
+  text-decoration: none;
+  text-underline-offset: 6px;
+}
+
+.nav__links a:hover {
+  text-decoration: underline;
+}
+
+.nav__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-5);
+}
+
+/* Menu repliable (mobile et tablette) */
+@media (max-width: 1199px) {
+  .nav__panel {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    padding: var(--s-3) 20px var(--s-6);
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+
+  .nav__panel[data-open="true"] {
+    display: grid;
+    gap: var(--s-5);
+  }
+
+  .nav__links li + li {
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__panel {
+    display: flex;
+    align-items: center;
+    gap: var(--s-6);
+  }
+
+  .nav__links {
+    display: flex;
+    gap: var(--s-5);
+  }
+
+  .nav__links a {
+    min-height: 44px;
+  }
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+  color: var(--muted);
+}
+
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.lang-switch a[aria-current="page"] {
+  font-weight: 700;
+}
+
+.lang-switch a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.theme-switcher {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+}
+
+.theme-switcher__btn {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: filter 150ms ease;
+}
+
+.theme-switcher__btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.theme-switcher__btn:hover {
+  color: var(--ink);
+}
+
+.theme-switcher__btn[aria-pressed="true"] {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+/* ---------- 6. Accueil : l'horizon ---------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: max(100svh, 680px);
+  overflow: hidden;
+}
+
+.horizon {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ciel et mer : un calque par ambiance, seul l'actif est visible. Le fondu ne touche que l'opacité. */
+.sky,
+.sea,
+.sun-disc {
+  opacity: 0;
+  transition: opacity var(--scene-ease);
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-low) calc(100% - var(--sea-h)));
+}
+
+/* Au coucher, le violet reste plus haut et l'orange se resserre sur l'horizon :
+   le texte crème garde un contraste d'au moins 4,5:1 */
+.sky.t-coucher {
+  background: linear-gradient(
+    to bottom,
+    var(--sky-top) 0%,
+    color-mix(in srgb, var(--sky-top) 82%, var(--sky-low)) 46%,
+    var(--sky-low) calc(100% - var(--sea-h))
+  );
+}
+
+:root:not([data-theme]) [data-scene="midi"],
+[data-theme="lever"] [data-scene="lever"],
+[data-theme="midi"] [data-scene="midi"],
+[data-theme="coucher"] [data-scene="coucher"],
+[data-theme="nuit"] [data-scene="nuit"] {
+  opacity: 1;
+}
+
+.stars {
+  position: absolute;
+  inset: 0 0 var(--sea-h) 0;
+  opacity: 0;
+  transition: opacity var(--scene-ease);
+}
+
+[data-theme="nuit"] .stars {
+  opacity: 1;
+}
+
+.stars span {
+  position: absolute;
+  border-radius: 50%;
+  background: #f4f1dc;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+/* Soleil et lune : X et Y bougent avec deux courbes différentes, ce qui trace un arc. */
+.orbit {
+  position: absolute;
+  inset: 0;
+  transition: transform var(--scene-ease);
+}
+
+.orbit-y {
+  position: absolute;
+  inset: 0;
+  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.sun,
+.moon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sun {
+  width: var(--sun-size);
+  height: var(--sun-size);
+  margin: calc(var(--sun-size) / -2) 0 0 calc(var(--sun-size) / -2);
+}
+
+.sun-disc {
+  position: absolute;
+  inset: -40%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    var(--star) 0 54%,
+    color-mix(in srgb, var(--star) 38%, transparent) 57%,
+    color-mix(in srgb, var(--star) 12%, transparent) 76%,
+    transparent 100%
+  );
+}
+
+.moon {
+  --moon-size: calc(var(--sun-size) * 0.7);
+  width: var(--moon-size);
+  height: var(--moon-size);
+  margin: calc(var(--moon-size) / -2) 0 0 calc(var(--moon-size) / -2);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 38%, #dcd7bd 0 9%, transparent 10%),
+    radial-gradient(circle at 62% 64%, #dcd7bd 0 6%, transparent 7%),
+    radial-gradient(circle at 66% 30%, #e4e0c8 0 5%, transparent 6%),
+    #f4f1dc;
+  box-shadow: 0 0 48px 6px rgba(244, 241, 220, 0.28);
+}
+
+/* Positions (X = largeur de l'accueil, Y = hauteur). L'horizon est à 64 %. */
+.orbit--sun {
+  transform: translateX(80%);
+}
+.orbit--sun .orbit-y {
+  transform: translateY(13%);
+}
+[data-theme="lever"] .orbit--sun {
+  transform: translateX(18%);
+}
+[data-theme="lever"] .orbit--sun .orbit-y {
+  transform: translateY(53%);
+}
+[data-theme="coucher"] .orbit--sun {
+  transform: translateX(86%);
+}
+[data-theme="coucher"] .orbit--sun .orbit-y {
+  transform: translateY(61%);
+}
+[data-theme="nuit"] .orbit--sun {
+  transform: translateX(90%);
+}
+[data-theme="nuit"] .orbit--sun .orbit-y {
+  transform: translateY(86%);
+}
+
+.orbit--moon {
+  transform: translateX(74%);
+}
+.orbit--moon .orbit-y {
+  transform: translateY(92%);
+}
+[data-theme="nuit"] .orbit--moon {
+  transform: translateX(82%);
+}
+[data-theme="nuit"] .orbit--moon .orbit-y {
+  transform: translateY(13%);
+}
+
+/* La lune n'apparaît que la nuit */
+.moon {
+  opacity: 0;
+  transition: opacity var(--scene-ease);
+}
+[data-theme="nuit"] .moon {
+  opacity: 1;
+}
+
+/* La mer et les vagues */
+.sea-base {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--sea-h);
+  background: var(--sea);
+}
+
+.sea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--sea-h);
+  background: linear-gradient(to bottom, var(--sea), var(--sea-deep));
+}
+
+/* Chaque vague = une crête (SVG) + un aplat de la même couleur jusqu'en bas */
+.wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  display: flex;
+  flex-direction: column;
+  animation: drift linear infinite;
+}
+
+.wave svg {
+  display: block;
+  flex: none;
+  height: var(--crest);
+}
+
+.wave path {
+  fill: var(--fill);
+}
+
+.wave::after {
+  content: "";
+  flex: 1;
+  margin-top: -1px;
+  background: var(--fill);
+}
+
+.wave--far {
+  top: -6px;
+  --crest: 16px;
+  --fill: color-mix(in srgb, var(--sea) 65%, var(--sky-low));
+  animation-duration: 18s;
+}
+
+.wave--mid {
+  top: 16%;
+  --crest: clamp(24px, 3vw, 40px);
+  --fill: var(--sea);
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+
+.wave--near {
+  top: 44%;
+  --crest: clamp(36px, 5vw, 68px);
+  --fill: color-mix(in srgb, var(--sea) 35%, var(--sea-deep));
+  animation-duration: 34s;
+}
+
+/* Le bord de plage, de la couleur de la page */
+.wave--shore {
+  top: auto;
+  bottom: -1px;
+  width: 100%;
+  --crest: clamp(24px, 4vw, 52px);
+  --fill: var(--bg);
+  animation: none;
+}
+
+/* Reflet sur l'eau, sous le soleil ou la lune */
+.orbit--glint {
+  transform: translateX(80%);
+}
+[data-theme="lever"] .orbit--glint {
+  transform: translateX(18%);
+}
+[data-theme="coucher"] .orbit--glint {
+  transform: translateX(86%);
+}
+[data-theme="nuit"] .orbit--glint {
+  transform: translateX(82%);
+}
+
+.glint {
+  position: absolute;
+  top: calc(100% - var(--sea-h) + 14px);
+  left: 0;
+  width: calc(var(--sun-size) * 1.5);
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  transform: translateX(-50%);
+}
+
+.glint span {
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--star);
+  opacity: 0.7;
+  animation: shimmer 3.2s ease-in-out infinite alternate;
+}
+
+.glint span:nth-child(1) { width: 100%; }
+.glint span:nth-child(2) { width: 74%; animation-delay: 0.6s; }
+.glint span:nth-child(3) { width: 52%; animation-delay: 1.2s; }
+.glint span:nth-child(4) { width: 34%; animation-delay: 1.8s; }
+.glint span:nth-child(5) { width: 18%; animation-delay: 2.4s; }
+
+/* Le texte de l'accueil */
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding-top: calc(var(--nav-h) + clamp(40px, 11vh, 140px));
+  text-align: center;
+}
+
+.hero__title {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hero__role {
+  margin: var(--s-5) auto 0;
+  font-size: var(--fs-lead);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.hero__lead {
+  margin: var(--s-3) auto 0;
+  max-width: 40ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3) var(--s-4);
+  margin-top: var(--s-6);
+}
+
+/* ---------- 7. À propos ---------- */
+
+.about {
+  display: grid;
+  gap: var(--s-7);
+}
+
+@media (min-width: 900px) {
+  .about {
+    grid-template-columns: 2fr 1fr;
+    gap: var(--s-8);
+    align-items: start;
+  }
+}
+
+.facts {
+  padding: var(--s-6);
+}
+
+.facts__title {
+  font-size: 1.25rem;
+  margin-bottom: var(--s-4);
+}
+
+.facts__list {
+  margin: 0;
+}
+
+.facts__row {
+  display: grid;
+  gap: 2px;
+  padding-block: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+
+.facts__row dt {
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.facts__row dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ---------- 8. Projets : liste en lignes ---------- */
+
+.projects {
+  list-style: none;
+  margin: var(--s-7) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "cover cover"
+    "num body";
+  gap: var(--s-5) var(--s-4);
+  padding-block: var(--s-7);
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .project {
+    grid-template-columns: 5rem minmax(0, 1fr) minmax(280px, 400px);
+    grid-template-areas: "num body cover";
+    gap: var(--s-6);
+    align-items: start;
+  }
+}
+
+.project__num {
+  grid-area: num;
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-weight: 600;
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  line-height: 1;
+  color: var(--muted);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.project__body {
+  grid-area: body;
+  min-width: 0;
+}
+
+.project__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  margin-bottom: var(--s-3);
+}
+
+.project__desc {
+  color: var(--muted);
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--s-5);
+  margin: var(--s-2) 0 0;
+}
+
+.project__note {
+  margin: var(--s-2) 0 0;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-family: var(--body);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  margin: var(--s-4) 0 0;
+  padding: 0;
+}
+
+.tags li {
+  padding: 2px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.tags--lg li {
+  padding: 4px 12px;
+  font-size: 0.9375rem;
+}
+
+/* Couverture : un petit horizon (ciel + 1 vague) aux couleurs de l'ambiance */
+.cover {
+  grid-area: cover;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--sky-low);
+}
+
+.cover__scene {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--sky-top), var(--sky-low));
+}
+
+.cover__sun {
+  position: absolute;
+  top: 40%;
+  width: 18%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--star);
+  transform: translateX(-50%);
+}
+
+.cover__wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+}
+
+.cover__wave path {
+  fill: var(--sea);
+}
+
+.cover__name {
+  position: absolute;
+  top: var(--s-5);
+  left: var(--s-5);
+  right: var(--s-5);
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.cover__img {
+  object-fit: cover;
+}
+
+/* Projet secret : couverture floutée, gros point d'interrogation */
+.cover--secret .cover__scene {
+  filter: blur(14px);
+  transform: scale(1.15);
+}
+
+.cover--secret .cover__name {
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(4rem, 3rem + 4vw, 6.5rem);
+  font-weight: 800;
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: var(--primary);
+}
+
+.glitch::after {
+  color: var(--muted);
+}
+
+.project--secret:hover .glitch::before {
+  animation: glitch-a 0.5s steps(2, end) infinite;
+}
+
+.project--secret:hover .glitch::after {
+  animation: glitch-b 0.5s steps(2, end) infinite;
+}
+
+/* ---------- 9. Compétences et CV, contact ---------- */
+
+.split {
+  display: grid;
+  gap: var(--s-9);
+}
+
+@media (min-width: 900px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--s-8);
+    align-items: start;
+  }
+}
+
+.skills {
+  margin: 0;
+  display: grid;
+  gap: var(--s-6);
+}
+
+.skills__group dt {
+  font-weight: 700;
+}
+
+.skills__group dd {
+  margin: 0;
+}
+
+.skills__group .tags {
+  margin-top: var(--s-3);
+}
+
+.cv-card {
+  display: grid;
+  justify-items: start;
+  gap: var(--s-5);
+  max-width: 400px;
+  margin-top: var(--s-5);
+  padding: var(--s-5);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.cv-card__img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: #ffffff;
+}
+
+.cv-card:hover .btn {
+  filter: brightness(0.94);
+}
+
+.contact__subtitle {
+  font-size: 1.25rem;
+  margin: var(--s-6) 0 var(--s-3);
+}
+
+.contact-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.contact-links a {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  min-height: 64px;
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.contact-links svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  color: var(--primary);
+}
+
+.contact-links__label {
+  display: block;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.contact-links__value {
+  display: block;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  text-underline-offset: 4px;
+}
+
+.contact-links a:hover .contact-links__value {
+  text-decoration: underline;
+}
+
+/* Formulaire */
+.form {
+  display: grid;
+  gap: var(--s-5);
+  padding: var(--s-6);
+}
+
+.form__title {
+  font-size: 1.25rem;
+}
+
+.field {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.field label {
+  font-weight: 500;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  /* --line est trop pâle pour délimiter un champ (contraste 3:1) : on le fonce un peu */
+  border: 1px solid color-mix(in srgb, var(--muted) 55%, var(--line));
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  border-color: var(--primary);
+}
+
+.field [aria-invalid="true"] {
+  border-color: var(--err);
+}
+
+.field__help {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.field__error {
+  margin: 0;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--err);
+}
+
+.form .btn {
+  justify-self: start;
+}
+
+.form__status {
+  margin: 0;
+  min-height: 1.6em;
+  color: var(--ok);
+  font-weight: 500;
+}
+
+.form__status--error {
+  color: var(--err);
+}
+
+/* ---------- 10. Pied de page ---------- */
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding-block: var(--s-7);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-6);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer__name {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.footer__made {
+  color: var(--muted);
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  color: var(--muted);
+}
+
+/* ---------- 11. Animations ---------- */
+
+@keyframes drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 0.85;
+  }
+}
+
+@keyframes glitch-a {
+  0% { opacity: 0.8; transform: translate(-3px, 1px); }
+  50% { opacity: 0.8; transform: translate(2px, -2px); }
+  100% { opacity: 0; transform: none; }
+}
+
+@keyframes glitch-b {
+  0% { opacity: 0.7; transform: translate(3px, -1px); }
+  50% { opacity: 0.7; transform: translate(-2px, 2px); }
+  100% { opacity: 0; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave,
+  .stars span,
+  .glint span {
+    animation: none !important;
+  }
+
+  .orbit,
+  .orbit-y,
+  .sky,
+  .sea,
+  .sun-disc,
+  .moon,
+  .stars {
+    transition: none !important;
+  }
+
+  .project--secret:hover .glitch::before,
+  .project--secret:hover .glitch::after {
+    animation: none !important;
+  }
+}
