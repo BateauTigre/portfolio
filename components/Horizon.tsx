@@ -113,9 +113,11 @@ export function Horizon() {
         </div>
       ))}
 
-      {/* Un surfeur sur la houle */}
-      <div className="hero-surfer">
-        <Surfer />
+      {/* Un surfeur qui traverse la baie sur la houle */}
+      <div className="surfer-track">
+        <div className="hero-surfer">
+          <Surfer />
+        </div>
       </div>
 
       {/* Reflet du soleil (ou de la lune) sur l'eau */}

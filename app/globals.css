@@ -1293,20 +1293,73 @@ a {
   color: var(--muted);
 }
 
-/* Le surfeur de l'accueil, posé sur la vague du milieu */
-.hero-surfer {
-  position: absolute;
-  left: 22%;
-  top: calc(100% - var(--sea-h) * 0.9);
-  width: clamp(44px, 5vw, 76px);
-  color: color-mix(in srgb, var(--sea-deep) 45%, #0b1320);
-  animation: ride 3.6s ease-in-out infinite alternate;
-}
+/* ---------- Le surfeur ---------- */
 
-.hero-surfer svg {
+.surfer {
   display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
+  --surfer-ink: color-mix(in srgb, var(--sea-deep) 40%, #0b1320);
+  --foam: color-mix(in srgb, #ffffff 80%, var(--sky-low));
+}
+
+.surfer__body {
+  fill: var(--surfer-ink);
+  stroke: var(--surfer-ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.surfer__body path {
+  fill: none;
+}
+
+.surfer__board {
+  fill: var(--star);
+  stroke: var(--surfer-ink);
+  stroke-width: 1.5;
+}
+
+.surfer__stringer {
+  fill: none;
+  stroke: var(--surfer-ink);
+  stroke-width: 1;
+  opacity: 0.45;
+}
+
+.surfer__fin {
+  fill: var(--surfer-ink);
+}
+
+.surfer__spray {
+  fill: var(--foam);
+  stroke: var(--foam);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.surfer__spray path {
+  fill: none;
+}
+
+/* Dans l'accueil, il traverse la baie de gauche à droite en suivant la houle */
+.surfer-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - var(--sea-h) * 0.93);
+  animation: surf-across 42s linear infinite;
+}
+
+.hero-surfer {
+  width: clamp(84px, 8.5vw, 140px);
+  animation: ride 2.2s ease-in-out infinite alternate;
+}
+
+.hero-surfer .surfer {
+  animation: carve 3.4s ease-in-out infinite alternate;
+  transform-origin: 50% 80%;
 }
 
 /* ---------- Séparateurs en vagues entre les sections ---------- */
@@ -1335,35 +1388,65 @@ a {
   padding-bottom: var(--s-8);
 }
 
-.divider > svg {
+.divider__waves {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  /* les lignes s'effacent sur les bords */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.divider__swell {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 200%;
+  animation: drift linear infinite;
+}
+
+.divider__swell svg {
   display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-.divider--flip > svg {
-  transform: scaleX(-1);
-}
-
-.divider__line {
+.divider__swell path {
   fill: none;
   stroke-linecap: round;
   stroke-width: 2.5;
   vector-effect: non-scaling-stroke;
 }
 
-.divider__line--1 { stroke: color-mix(in srgb, var(--sea) 70%, var(--bg)); }
-.divider__line--2 { stroke: color-mix(in srgb, var(--sea) 45%, var(--bg)); }
-.divider__line--3 { stroke: color-mix(in srgb, var(--sea) 25%, var(--bg)); }
+.divider__swell--1 { animation-duration: 26s; }
+.divider__swell--2 { animation-duration: 38s; animation-direction: reverse; }
+.divider__swell--3 { animation-duration: 52s; }
 
-.divider .divider__surfer {
+.divider--flip .divider__swell--1,
+.divider--flip .divider__swell--3 {
+  animation-direction: reverse;
+}
+
+.divider--flip .divider__swell--2 {
+  animation-direction: normal;
+}
+
+.divider__swell--1 path { stroke: color-mix(in srgb, var(--sea) 70%, var(--bg)); }
+.divider__swell--2 path { stroke: color-mix(in srgb, var(--sea) 45%, var(--bg)); }
+.divider__swell--3 path { stroke: color-mix(in srgb, var(--sea) 25%, var(--bg)); }
+
+.divider__surfer {
   position: absolute;
-  left: 62%;
-  bottom: calc(100% - 34px);
-  width: clamp(38px, 4vw, 56px);
-  height: auto;
-  color: var(--ink);
+  left: 60%;
+  bottom: calc(100% - 46px);
+  width: clamp(52px, 5vw, 72px);
+  animation: ride 2.6s ease-in-out infinite alternate;
+}
+
+/* Hors de la mer, la silhouette prend la couleur du texte pour rester visible sur tous les fonds */
+.divider__surfer .surfer {
+  --surfer-ink: var(--ink);
+  --foam: color-mix(in srgb, var(--sea) 60%, var(--bg));
 }
 
 /* ---------- 11. Animations ---------- */
@@ -1376,10 +1459,28 @@ a {
 
 @keyframes ride {
   from {
-    transform: translateY(0) rotate(-2deg);
+    transform: translateY(2px);
   }
   to {
-    transform: translateY(-7px) rotate(3deg);
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes carve {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes surf-across {
+  from {
+    transform: translateX(-12%);
+  }
+  to {
+    transform: translateX(104%);
   }
 }
 
@@ -1416,6 +1517,9 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .wave,
   .hero-surfer,
+  .hero-surfer .surfer,
+  .divider__swell,
+  .divider__surfer,
   .stars span,
   .glint span {
     animation: none !important;
@@ -1434,5 +1538,11 @@ a {
   .project--secret:hover .glitch::before,
   .project--secret:hover .glitch::after {
     animation: none !important;
+  }
+
+  /* mouvement réduit : le surfeur reste posé à gauche de la baie */
+  .surfer-track {
+    animation: none !important;
+    transform: translateX(22%);
   }
 }

@@ -138,7 +138,7 @@ const fr: Dictionary = {
     paragraphs: [
       "Je suis Arthur, étudiant en 2e année de BUT Informatique à l'IUT de Nantes. Je suis arrivé au code par les jeux vidéo, et aujourd'hui je fais surtout du développement web : des sites et des applis que j'utilise moi-même, ou que ma promo utilise.",
       "J'apprends le plus en construisant mes propres projets, de l'idée jusqu'à la mise en ligne. À terme, j'aimerais créer des jeux, et j'ai déjà commencé sur Roblox.",
-      "Quand je ne code pas, je suis dans l'eau ou en train de courir : surf, course à pied, natation, et je me mets au triathlon. J'ai aussi voyagé au Portugal, à Tenerife, en Angleterre et en Allemagne.",
+      "Quand je ne code pas, je suis souvent dans l'eau : je surfe, je nage, je cours aussi, et je me mets au triathlon. J'ai voyagé au Portugal, à Tenerife, en Angleterre et en Allemagne.",
     ],
     factsTitle: "En bref",
     facts: [
@@ -194,7 +194,7 @@ const fr: Dictionary = {
         description:
           "Mon remake de Gartic Phone, le jeu où une phrase passe de dessin en dessin entre les joueurs jusqu'à devenir méconnaissable.",
         stack: ["JavaScript", "Cloudflare"],
-        links: [{ label: "Mon GitHub", href: "https://github.com/BateauTigre" }],
+        links: [{ label: "Voir le code", href: "https://github.com/BateauTigre/griboulade" }],
       },
       {
         slug: "carte-des-films",
@@ -203,7 +203,7 @@ const fr: Dictionary = {
           "Une carte de 35 000 films placés selon leur ressemblance : les films proches se retrouvent côte à côte, et on se balade dedans pour trouver quoi regarder.",
         stack: ["Python", "UMAP", "HDBSCAN", "API TMDB", "Canvas"],
         status: "soon",
-        links: [{ label: "Mon GitHub", href: "https://github.com/BateauTigre" }],
+        links: [{ label: "Voir le dépôt", href: "https://github.com/BateauTigre/Carte-des-films" }],
       },
       {
         slug: "redesign-deezer",
@@ -211,12 +211,12 @@ const fr: Dictionary = {
         description:
           "Un thème « liquid glass » pour Deezer web, installé comme une appli : navigation plus claire, lecteur plus grand, plus de pubs ni de recommandations imposées.",
         stack: ["CSS", "JavaScript", "Tampermonkey"],
-        links: [{ label: "Mon GitHub", href: "https://github.com/BateauTigre" }],
+        links: [{ label: "Voir le code", href: "https://github.com/BateauTigre/deezer-liquid-glass" }],
       },
       {
         slug: "meteo",
         name: "Site météo",
-        description: "Un site de prévisions météo, en cours de développement.",
+        description: "Un site de prévisions météo.",
         stack: [],
         status: "wip",
         links: [],
@@ -266,7 +266,7 @@ const fr: Dictionary = {
       subject: "Message depuis le portfolio",
     },
   },
-  footer: { made: "Fait à Nantes, face à la mer (ou presque)." },
+  footer: { made: "Co-créé avec Claude." },
 };
 
 /* ---------- English ---------- */
@@ -299,7 +299,7 @@ const en: Dictionary = {
     paragraphs: [
       "I'm Arthur, a second-year computer science student (BUT Informatique) at the IUT de Nantes. Video games got me into code, and today I mostly do web development: sites and apps that I use myself, or that my classmates use.",
       "I learn the most by building my own projects, from the first idea to going live. Later on I'd like to make games, and I've already started on Roblox.",
-      "When I'm not coding, I'm in the water or out running: surfing, running, swimming, and I'm getting into triathlon. I've also travelled to Portugal, Tenerife, England and Germany.",
+      "When I'm not coding, I'm usually in the water: I surf, I swim, I also run, and I'm getting into triathlon. I've travelled to Portugal, Tenerife, England and Germany.",
     ],
     factsTitle: "At a glance",
     facts: [
@@ -355,7 +355,7 @@ const en: Dictionary = {
         description:
           "My remake of Gartic Phone, the game where a sentence travels from drawing to drawing between players until nobody recognises it.",
         stack: ["JavaScript", "Cloudflare"],
-        links: [{ label: "My GitHub", href: "https://github.com/BateauTigre" }],
+        links: [{ label: "See the code", href: "https://github.com/BateauTigre/griboulade" }],
       },
       {
         slug: "carte-des-films",
@@ -364,20 +364,20 @@ const en: Dictionary = {
           "A map of 35,000 movies placed by how similar they are: close movies end up side by side, and you wander around to find something to watch.",
         stack: ["Python", "UMAP", "HDBSCAN", "TMDB API", "Canvas"],
         status: "soon",
-        links: [{ label: "My GitHub", href: "https://github.com/BateauTigre" }],
+        links: [{ label: "See the repository", href: "https://github.com/BateauTigre/Carte-des-films" }],
       },
       {
         slug: "redesign-deezer",
         name: "Deezer redesign",
         description:
-          "A “liquid glass” theme for Deezer on the web, installed like an app: clearer navigation, a bigger player, no more ads or forced recommendations.",
+          "A \"liquid glass\" theme for Deezer on the web, installed like an app: clearer navigation, a bigger player, no more ads or forced recommendations.",
         stack: ["CSS", "JavaScript", "Tampermonkey"],
-        links: [{ label: "My GitHub", href: "https://github.com/BateauTigre" }],
+        links: [{ label: "See the code", href: "https://github.com/BateauTigre/deezer-liquid-glass" }],
       },
       {
         slug: "meteo",
         name: "Weather site",
-        description: "A weather forecast website, currently in development.",
+        description: "A weather forecast website.",
         stack: [],
         status: "wip",
         links: [],
@@ -427,7 +427,7 @@ const en: Dictionary = {
       subject: "Message from the portfolio",
     },
   },
-  footer: { made: "Made in Nantes, facing the sea (almost)." },
+  footer: { made: "Co-made with Claude." },
 };
 
 export const dictionaries: Record<Locale, Dictionary> = { fr, en };
